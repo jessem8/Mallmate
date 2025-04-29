@@ -1,0 +1,19 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+    <file alias="icons/add.png">icons/add.png</file>
+    <file alias="icons/pencil.png">icons/pencil.png</file>
+    <file alias="icons/filter.png">icons/filter.png</file>
+    <file alias="icons/sort.png">icons/sort.png</file>
+    <file alias="icons/search.png">icons/search.png</file>
+    <file alias="icons/list.png">icons/list.png</file>
+    <file alias="icons/stats.png">icons/stats.png</file>
+    <file alias="icons/settings.png">icons/settings.png</file>
+    <file alias="icons/support.png">icons/support.png</file>
+    <file alias="icons/signout.png">icons/signout.png</file>
+    <file alias="icons/user.png">icons/user.png</file>
+    <file alias="icons/edit.png">icons/edit.png</file>
+    <file alias="icons/delete.png">icons/delete.png</file>
+    <file alias="icons/export.png">icons/export.png</file>
+    <file alias="icons/logo.png">icons/logo.png</file>
+    </qresource>
+</RCC>
