@@ -1,0 +1,14 @@
+release/kioskmonitordialog.o
+release/main.o
+release/offeritemdelegate.o
+release/offersflashscreen.o
+release/settingswidget.o
+release/statswidget.o
+release/suggestiondialog.o
+release/qrc_resources.o
+release/moc_kioskmonitordialog.o
+release/moc_offeritemdelegate.o
+release/moc_offersflashscreen.o
+release/moc_settingswidget.o
+release/moc_statswidget.o
+release/moc_suggestiondialog.o

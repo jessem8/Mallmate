@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>mallmate_logo.png</file>
+        <file>primeEN_logo.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>mallmate_logo.png</file>
+        <file>calendar.png</file>
+        <file>check_circle.png</file>
+        <file>delete.png</file>
+        <file>edit.png</file>
+        <file>excel.png</file>
+        <file>google_icon.png</file>
+        <file>info.png</file>
+        <file>logout.png</file>
+        <file>mallmate_logo.ico</file>
+        <file>mallmate_logo.jpg</file>
+        <file>mallmate_logo.png</file>
+        <file>menu.png</file>
+        <file>notifications.png</file>
+        <file>primeEN_logo.png</file>
+        <file>quit.png</file>
+        <file>report.png</file>
+        <file>search.png</file>
+        <file>settings.png</file>
+        <file>stats.png</file>
+        <file>tag.png</file>
+        <file>visibility.png</file>
+        <file>claims.png</file>
+        <file>consult.png</file>
+        <file>reject.png</file>
+        <file>smart_toy_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png</file>
+        <file>arrow_down.png</file>
+        <file>qr_code.png</file>
+        <file>featured_seasonal_and_gifts_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file>style.qss</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,44 @@
+# Build directories
+/build-*/
+/debug/
+/release/
+/Debug/
+/Release/
+/Win32/
+/x64/
+
+# Qt User Settings
+*.pro.user*
+*.pro.shared
+*.user
+
+# Compiled Object files, Libraries, Executables
+*.o
+*.a
+*.dll
+*.so
+*.dylib
+*.exe
+*.app
+
+# Qt Creator files
+*.creator
+*.creator.user
+
+# Moc intermediate files
+moc_*.cpp
+*.moc
+
+# UI intermediate files
+ui_*.h
+
+# RCC intermediate files
+qrc_*.cpp
+
+# Other temporary files
+*.bak
+*.tmp
+*.swp
+
+# IDE specific files (e.g., VSCode)
+.vscode/
