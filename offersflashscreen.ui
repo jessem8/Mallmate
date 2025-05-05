@@ -1,0 +1,1232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OffresFlashScreen</class>
+ <widget class="QWidget" name="OffresFlashScreen">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1290</width>
+    <height>802</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Gestion des Offres Flash</string>
+  </property>
+  <layout class="QHBoxLayout" name="mainHorizontalLayout" stretch="0,1">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="sidebarWidget">
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>180</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/* Style for the sidebar background */
+QWidget#sidebarWidget {
+  background-color: #2c3e50; /* Example dark blue-grey */
+  border-right: 1px solid #1a252f; /* Optional subtle border */
+}
+
+/* Style for buttons within the sidebar */
+QWidget#sidebarWidget QPushButton {
+  color: white;
+  background-color: transparent; /* Make background transparent */
+  border: none; /* No border */
+  padding: 10px 15px; /* Vertical and horizontal padding */
+  text-align: left; /* Align text to the left */
+  font-size: 10pt; /* Adjust font size */
+  min-height: 30px; /* Ensure minimum height */
+  border-radius: 4px; /* Slightly rounded corners */
+  icon-size: 18px 18px; /* Adjust icon size */
+}
+
+QWidget#sidebarWidget QPushButton:hover {
+  background-color: #34495e; /* Slightly lighter on hover */
+}
+
+QWidget#sidebarWidget QPushButton:pressed {
+  background-color: #1abc9c; /* Example press color (teal) */
+}
+
+/* Style for the currently active/selected button */
+/* This requires setting the 'checked' property to true in C++ */
+QWidget#sidebarWidget QPushButton:checked {
+  background-color: #16a085; /* Darker teal for selected */
+  font-weight: bold;
+}
+</string>
+     </property>
+     <layout class="QVBoxLayout" name="sidebarLayout">
+      <property name="spacing">
+       <number>8</number>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>15</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>15</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="sidebarButtonOffers">
+        <property name="toolTip">
+         <string>Gérer les offres flash</string>
+        </property>
+        <property name="text">
+         <string> Gestion Offres</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/tag.png</normaloff>:/icons/tag.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sidebarButtonStats">
+        <property name="toolTip">
+         <string>Afficher les statistiques</string>
+        </property>
+        <property name="text">
+         <string> Statistiques</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/stats.png</normaloff>:/icons/stats.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sidebarButtonSettings">
+        <property name="toolTip">
+         <string>Ouvrir les paramètres</string>
+        </property>
+        <property name="text">
+         <string> Paramètres</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sidebarButtonExport">
+        <property name="toolTip">
+         <string>Exporter les données en CSV</string>
+        </property>
+        <property name="text">
+         <string> Exporter</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/excel.png</normaloff>:/icons/excel.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sidebarButtonAbout">
+        <property name="toolTip">
+         <string>Afficher les informations 'À propos'</string>
+        </property>
+        <property name="text">
+         <string> À propos</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resources.qrc">
+          <normaloff>:/icons/info.png</normaloff>:/icons/info.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="sidebarVerticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="contentStackedWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="offreManagementPage">
+      <layout class="QVBoxLayout" name="mainLayout" stretch="0,0,0,1">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>15</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>15</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="topBarWidget" native="true">
+         <layout class="QHBoxLayout" name="topBarLayout">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_1">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="topLogoLabel">
+            <property name="minimumSize">
+             <size>
+              <width>160</width>
+              <height>160</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>MALLMATE LOGO</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="screenTitleLabel">
+            <property name="text">
+             <string>Gestion des Offres Flash</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="topMenuButton">
+            <property name="toolTip">
+             <string>Menu</string>
+            </property>
+            <property name="text">
+             <string>☰</string>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="statsBarWidget" native="true">
+         <layout class="QHBoxLayout" name="statsBarLayout">
+          <property name="spacing">
+           <number>15</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="statsCard1">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>80</height>
+             </size>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="statsCardLayout1">
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="statValueLabel1">
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statValueLabel1</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="statTitleLabel1">
+               <property name="text">
+                <string>Titre Stat 1</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statTitleLabel1</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="statsCard2">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>80</height>
+             </size>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="statsCardLayout2">
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="statValueLabel2">
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statValueLabel2</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="statTitleLabel2">
+               <property name="text">
+                <string>Titre Stat 2</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statTitleLabel2</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="statsCard3">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>80</height>
+             </size>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="statsCardLayout3">
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="statValueLabel3">
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statValueLabel3</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="statTitleLabel3">
+               <property name="text">
+                <string>Titre Stat 3</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statTitleLabel3</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="statsCard4">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>80</height>
+             </size>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::Shape::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Shadow::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="statsCardLayout4">
+             <property name="spacing">
+              <number>5</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>10</number>
+             </property>
+             <property name="rightMargin">
+              <number>10</number>
+             </property>
+             <property name="bottomMargin">
+              <number>10</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="statValueLabel4">
+               <property name="text">
+                <string>0</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statValueLabel4</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="statTitleLabel4">
+               <property name="text">
+                <string>Titre Stat 4</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="objectName">
+                <string>statTitleLabel4</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="actionBarWidget" native="true">
+         <layout class="QHBoxLayout" name="actionBarLayout" stretch="0,0,0,0,0,0,0,0,0,1">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="actionButtonModify">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Modifier l'offre sélectionnée</string>
+            </property>
+            <property name="text">
+             <string>Modifier</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="actionButtonDelete">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Supprimer l'offre sélectionnée</string>
+            </property>
+            <property name="text">
+             <string>Supprimer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="actionButtonConsult">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Consulter les détails de l'offre sélectionnée</string>
+            </property>
+            <property name="text">
+             <string>Consulter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="actionButtonViewClaims">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Voir les réclamations pour l'offre sélectionnée</string>
+            </property>
+            <property name="text">
+             <string>Réclamations</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="actionButtonValidate">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Valider l'offre sélectionnée (en attente)</string>
+            </property>
+            <property name="text">
+             <string>Valider</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="actionButtonReject">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Rejeter l'offre sélectionnée (en attente)</string>
+            </property>
+            <property name="text">
+             <string>Rejeter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="actionBarSortLabel">
+            <property name="text">
+             <string>Trier par:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="actionBarSortComboBox">
+            <property name="toolTip">
+             <string>Choisir l'ordre de tri des offres</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Date (Plus récentes)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Date (Plus anciennes)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Description (A-Z)</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="actionBarSearchEdit">
+            <property name="minimumSize">
+             <size>
+              <width>250</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="placeholderText">
+             <string>Rechercher par description...</string>
+            </property>
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QStackedWidget" name="centralStackedWidget">
+         <property name="currentIndex">
+          <number>1</number> </property>
+         <widget class="QWidget" name="formPage">
+          <layout class="QVBoxLayout" name="formPageInternalLayout">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="formFrame">
+             <property name="frameShape">
+              <enum>QFrame::Shape::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="formContainerLayout">
+              <property name="spacing">
+               <number>15</number>
+              </property>
+              <property name="leftMargin">
+               <number>20</number>
+              </property>
+              <property name="topMargin">
+               <number>20</number>
+              </property>
+              <property name="rightMargin">
+               <number>20</number>
+              </property>
+              <property name="bottomMargin">
+               <number>20</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="formTitleLabel">
+                <property name="text">
+                 <string>Ajouter / Modifier une offre</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QFormLayout" name="formLayout">
+                <property name="labelAlignment">
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                </property>
+                <property name="horizontalSpacing">
+                 <number>10</number>
+                </property>
+                <property name="verticalSpacing">
+                 <number>10</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="formDescLabel">
+                  <property name="text">
+                   <string>Description:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <layout class="QHBoxLayout" name="descLayout">
+                  <property name="spacing">
+                   <number>5</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLineEdit" name="formDescriptionEdit"/>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="formSuggestDescButton">
+                    <property name="cursor">
+                     <cursorShape>PointingHandCursor</cursorShape>
+                    </property>
+                    <property name="toolTip">
+                     <string>Suggérer une description (IA)</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="resources.qrc">
+                      <normaloff>:/icons/smart_toy_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png</normaloff>:/icons/smart_toy_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                    <property name="flat">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="formReducLabel">
+                  <property name="text">
+                   <string>Reduction / Prix:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="formDiscountEdit">
+                  <property name="placeholderText">
+                   <string>Ex: 25% ou 9.99</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="formQuantiteLabel">
+                  <property name="text">
+                   <string>Quantite Limitee:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="formQuantityEdit">
+                  <property name="placeholderText">
+                   <string>0 ou vide si illimitee</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="formStoreLabel">
+                  <property name="text">
+                   <string>Magasin:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QComboBox" name="formStoreComboBox">
+                  <item>
+                   <property name="text">
+                    <string>Choisir un magasin...</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="formStartDateLabel">
+                  <property name="text">
+                   <string>Debut:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QDateTimeEdit" name="formStartDateEdit">
+                  <property name="displayFormat">
+                   <string>dd/MM/yyyy hh:mm</string>
+                  </property>
+                  <property name="calendarPopup">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="formEndDateLabel">
+                  <property name="text">
+                   <string>Fin:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QDateTimeEdit" name="formEndDateEdit">
+                  <property name="displayFormat">
+                   <string>dd/MM/yyyy hh:mm</string>
+                  </property>
+                  <property name="calendarPopup">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="formButtonLayout">
+                <item>
+                 <widget class="QPushButton" name="formSuggestButton">
+                  <property name="toolTip">
+                   <string>Suggérer des paramètres ou prédire la performance (IA)</string>
+                  </property>
+                  <property name="text">
+                   <string>Suggestion IA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="formSubmitButton">
+                  <property name="text">
+                   <string>Enregistrer</string>
+                  </property>
+                  <property name="default">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="formCancelButton">
+                  <property name="text">
+                   <string>Annuler</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item alignment="Qt::AlignmentFlag::AlignHCenter">
+               <widget class="QPushButton" name="formShowListButton">
+                <property name="text">
+                 <string>Voir la liste des offres</string>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Policy::Expanding</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="listPage">
+          <layout class="QVBoxLayout" name="listAreaLayout" stretch="0,1">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="listFilterTabsWidget" native="true">
+             <layout class="QHBoxLayout" name="filterTabsLayout">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>5</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="listFilterActiveButton">
+                <property name="text">
+                 <string>Actives (En cours)</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="listFilterEndedButton">
+                <property name="text">
+                 <string>Terminees</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="listFilterValidatedButton">
+                <property name="text">
+                 <string>Validees</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="listFilterPendingButton">
+                <property name="toolTip">
+                 <string>Afficher les offres en attente de validation</string>
+                </property>
+                <property name="text">
+                 <string>En Attente</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="listFilterAllButton">
+                <property name="toolTip">
+                 <string>Afficher toutes les offres</string>
+                </property>
+                <property name="text">
+                 <string>Toutes</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="listShowFormButton">
+                <property name="text">
+                 <string>Ajouter une offre</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="offersListWidget">
+             <property name="horizontalScrollBarPolicy">
+              <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>false</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+             </property>
+             <property name="verticalScrollMode">
+              <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
+             </property>
+             <property name="spacing">
+              <number>2</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       </layout>
+     </widget>
+     <widget class="QWidget" name="statsPage">
+      <layout class="QVBoxLayout" name="statsPageLayout">
+       <item>
+        <widget class="QLabel" name="statsPagePlaceholderLabel">
+         <property name="text">
+          <string>Statistics Page Content Goes Here</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="settingsPage">
+      <layout class="QVBoxLayout" name="settingsPageLayout">
+       <item>
+        <widget class="QLabel" name="settingsPagePlaceholderLabel">
+         <property name="text">
+          <string>Settings Page Content Goes Here</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

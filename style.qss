@@ -1,0 +1,918 @@
+/* =====================================================================
+   Mallmate Global Stylesheet - Professional Theme v4 (Updated for OffresFlashScreen)
+   ===================================================================== */
+
+/* --- Global Defaults --- */
+QWidget {
+    font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10pt;
+    color: #333333;  /* Default dark grey text */
+}
+
+/* Set background for the main screen widget and Dialogs */
+QWidget#OffresFlashScreen, QDialog {
+    background-color: #f4f7f6; /* A slightly off-white/very light grey background */
+}
+
+/* --- Top Bar Styling (REMOVED) --- */
+/*
+QWidget#topBarWidget {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+*/
+
+/* --- Input Fields --- */
+QLineEdit, QComboBox, QDateTimeEdit, QTextEdit, QPlainTextEdit ,QSpinBox,QDoubleSpinBox {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 7px 10px;
+    min-height: 24px;
+    font-size: 10pt;
+    color: #222222;
+}
+
+QLineEdit:focus, QComboBox:focus, QDateTimeEdit:focus, QTextEdit:focus, QPlainTextEdit:focus ,QSpinBox:focus,QDoubleSpinBox:focus{
+    border: 1px solid #0078d4;
+    background-color: #ffffff;
+}
+
+QLineEdit:disabled, QComboBox:disabled, QDateTimeEdit:disabled, QTextEdit:disabled, QPlainTextEdit:disabled,QSpinBox:disabled,QDoubleSpinBox:disabled {
+    background-color: #eeeeee;
+    color: #999999;
+    border-color: #dcdcdc;
+}
+
+/* Placeholders */
+QLineEdit {
+    qproperty-placeholderTextColor: #a0a0a0;
+}
+QLineEdit[echoMode="2"] { /* Password fields */
+    /* Add specific styling if needed */
+}
+
+/* ComboBox Styling */
+/* ... other QComboBox rules ... */
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 22px;
+    border-left-width: 1px;
+    border-left-color: #dcdcdc;
+    border-left-style: solid;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #f0f0f0;
+
+    /* --- TRY SETTING IMAGE HERE --- */
+    image: url(:/icons/arrow_down.png); /* Use the desired arrow */
+    /* Adjust padding on the drop-down button itself to position the image */
+    padding: 5px; /* Example padding - adjust as needed */
+    /* --- End TRY --- */
+}
+QComboBox::drop-down:hover {
+    background-color: #e8e8e8;
+}
+
+/* --- REMOVE or COMMENT OUT the ::down-arrow rule --- */
+/*
+QComboBox::down-arrow {
+    image: url(:/icons/arrow_down.png);
+    width: 10px;
+    height: 10px;
+    subcontrol-origin: content;
+    subcontrol-position: center;
+}
+*/
+/* --- End REMOVE --- */
+
+
+QComboBox::down-arrow:on {
+    /* Optional: change arrow direction or position when open */
+    /* top: 1px; left: 1px; */
+}
+
+QComboBox QAbstractItemView { /* Dropdown List */
+    background-color: white;
+    color: #333333;
+    border: 1px solid #c0c0c0;
+    selection-background-color: #0078d4; /* Use theme primary color */
+    selection-color: white;
+    padding: 4px;
+    outline: 0px;
+}
+
+/* ... rest of QSS ... */
+
+
+/* DateTimeEdit Styling */
+QDateTimeEdit {
+   /* Base style inherited */
+}
+/* Hide the default up/down arrows if calendar popup is preferred */
+QDateTimeEdit::up-button, QDateTimeEdit::down-button {
+    width: 0px;
+    border: none;
+    background: transparent;
+}
+/* Style the calendar dropdown button */
+QDateTimeEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 22px;
+    border-left-width: 1px;
+    border-left-color: #dcdcdc;
+    border-left-style: solid;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: #f0f0f0;
+    /* Use a calendar icon */
+    image: url(:/icons/calendar.png); /* ** Ensure calendar.png exists in resources! ** */
+    padding-right: 5px; /* Adjust padding if icon is used */
+}
+QDateTimeEdit::drop-down:hover {
+    background-color: #e8e8e8;
+}
+/* Hide the default down arrow if using an image */
+QDateTimeEdit::down-arrow {
+   width: 0px;
+   height: 0px;
+}
+
+/* === Calendar Popup Styling === */
+QCalendarWidget {
+    background-color: white;
+    color: #333333;
+    border: 1px solid #bababa;
+}
+QCalendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: #f0f0f0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    min-height: 30px;
+}
+QCalendarWidget QToolButton {
+    height: 26px;
+    font-size: 9pt;
+    color: #333;
+    background-color: #f0f0f0;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    margin: 2px;
+    padding: 2px 6px;
+}
+QCalendarWidget QToolButton:hover {
+    background-color: #e5e5e5;
+    border-color: #bbbbbb;
+}
+QCalendarWidget QToolButton:pressed {
+    background-color: #dcdcdc;
+}
+QCalendarWidget QMenu {
+    background-color: white;
+    color: #333;
+    border: 1px solid #bababa;
+    padding: 4px;
+}
+QCalendarWidget QMenu::item:selected {
+     background-color: #e5f1fb;
+}
+QCalendarWidget QSpinBox {
+    color: #333;
+    background-color: white;
+    border: 1px solid #cccccc;
+    padding: 2px;
+    margin: 2px;
+}
+QCalendarWidget QSpinBox::up-button, QCalendarWidget QSpinBox::down-button {
+     min-width: 15px;
+}
+QCalendarWidget QTableView {
+    background-color: white;
+    color: #333333;
+    border: none;
+    selection-background-color: #0078d4;
+    selection-color: white;
+    gridline-color: #e8e8e8;
+}
+QCalendarWidget QTableView QHeaderView::section {
+    background-color: #f8f8f8;
+    color: #555555;
+    font-weight: bold;
+    padding: 4px;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+}
+QCalendarWidget QAbstractItemView:enabled {
+     color: #333333;
+     background-color: white;
+     selection-background-color: #0078d4;
+     selection-color: white;
+ }
+QCalendarWidget QAbstractItemView:disabled {
+     color: #c0c0c0;
+     background-color: #ffffff;
+ }
+QCalendarWidget QWidget#qt_calendar_calendarview {
+    outline: 0;
+    border: none;
+    background-color: white;
+}
+/* === End Calendar Popup Styling === */
+
+
+/* --- Buttons --- */
+/* Base Button Style */
+QPushButton {
+    background-color: #f0f0f0;
+    color: #333333;
+    border: 1px solid #adadad;
+    border-radius: 4px;
+    padding: 7px 15px;
+    min-height: 24px;
+    font-size: 10pt;
+    /* qproperty-iconAlignment: AlignLeft; */
+}
+QPushButton:hover {
+    background-color: #e5e5e5;
+    border-color: #888888;
+}
+QPushButton:pressed {
+    background-color: #dcdcdc;
+    border-color: #666666;
+}
+QPushButton:disabled {
+    background-color: #f5f5f5;
+    color: #aaaaaa;
+    border-color: #d1d1d1;
+}
+QPushButton:checked { /* For checkable buttons like filters */
+    background-color: #ddeeff;
+    border-color: #0078d4;
+    color: #005a9e;
+    font-weight: bold;
+}
+
+/* Primary Button Style (Form Submit) */
+QPushButton#formSubmitButton {
+    background-color: #0078d4;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #005a9e;
+}
+QPushButton#formSubmitButton:hover {
+    background-color: #106ebe;
+    border-color: #005a9e;
+}
+QPushButton#formSubmitButton:pressed {
+    background-color: #005a9e;
+    border-color: #003b6a;
+}
+QPushButton#formSubmitButton:disabled {
+    background-color: #a0c7e8;
+    border-color: #a0c7e8;
+    color: #f0f0f0;
+}
+
+/* Secondary/Standard Button Style (e.g., Cancel) */
+QPushButton#formCancelButton {
+    font-weight: normal;
+}
+
+/* Link-Style Button (Show List/Show Form) */
+QPushButton#formShowListButton { /* Button on form page to show list */
+    background-color: transparent;
+    color: #0078d4;
+    border: none;
+    font-weight: normal;
+    padding: 5px;
+    text-decoration: underline;
+    min-height: 0;
+    border-radius: 0px;
+}
+QPushButton#formShowListButton:hover {
+    color: #005a9e;
+    background-color: transparent;
+    text-decoration: none;
+}
+QPushButton#formShowListButton:pressed {
+    color: #003b6a;
+    background-color: transparent;
+}
+
+/* ** MODIFIED: Style "Ajouter une offre" button as primary ** */
+QPushButton#listShowFormButton { /* Button on list page to show form */
+    background-color: #0078d4; /* Same as formSubmitButton */
+    color: white;
+    font-weight: bold;
+    border: 1px solid #005a9e;
+    /* Inherit padding, min-height, border-radius from base QPushButton */
+    padding: 7px 15px; /* Explicitly set if needed */
+    text-decoration: none; /* Remove underline if it was inherited */
+}
+QPushButton#listShowFormButton:hover {
+    background-color: #106ebe;
+    border-color: #005a9e;
+}
+QPushButton#listShowFormButton:pressed {
+    background-color: #005a9e;
+    border-color: #003b6a;
+}
+QPushButton#listShowFormButton:disabled { /* Style if it can be disabled */
+    background-color: #a0c7e8;
+    border-color: #a0c7e8;
+    color: #f0f0f0;
+}
+
+
+/* --- Action Bar Button Styling --- */
+/* Common style for action buttons (with icons) */
+QPushButton#actionButtonModify,
+QPushButton#actionButtonDelete,
+QPushButton#actionButtonConsult,
+QPushButton#actionButtonViewClaims,
+QPushButton#actionButtonValidate,
+QPushButton#actionButtonReject {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #cccccc;
+    padding-left: 28px;
+    padding-right: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: left;
+    min-width: 90px;
+}
+/* Common hover */
+QPushButton#actionButtonModify:hover,
+QPushButton#actionButtonConsult:hover,
+QPushButton#actionButtonViewClaims:hover,
+QPushButton#actionButtonValidate:hover { /* Exclude Delete/Reject */
+    background-color: #f5f5f5;
+    border-color: #bbbbbb;
+}
+/* Common pressed */
+QPushButton#actionButtonModify:pressed,
+QPushButton#actionButtonConsult:pressed,
+QPushButton#actionButtonViewClaims:pressed,
+QPushButton#actionButtonValidate:pressed { /* Exclude Delete/Reject */
+    background-color: #eeeeee;
+}
+
+/* Primary Action Button Style (Validate) */
+QPushButton#actionButtonValidate {
+    background-color: #e5f1fb;
+    color: #005a9e;
+    border: 1px solid #a0c7e8;
+    font-weight: bold;
+}
+QPushButton#actionButtonValidate:hover {
+    background-color: #cde8ff;
+    border-color: #79b7ed;
+}
+QPushButton#actionButtonValidate:pressed {
+    background-color: #a0c7e8;
+    border-color: #569ddb;
+}
+
+/* Destructive Action Buttons (Delete, Reject) - Hover/Pressed */
+QPushButton#actionButtonDelete:hover,
+QPushButton#actionButtonReject:hover {
+    background-color: #fff0f1;
+    color: #d83b01;
+    border-color: #f1acb6;
+}
+QPushButton#actionButtonDelete:pressed,
+QPushButton#actionButtonReject:pressed {
+    background-color: #fdd8db;
+    color: #a4262c;
+    border-color: #e48c8c;
+}
+/* Disabled state common for all action buttons */
+QPushButton#actionButtonModify:disabled,
+QPushButton#actionButtonDelete:disabled,
+QPushButton#actionButtonConsult:disabled,
+QPushButton#actionButtonViewClaims:disabled,
+QPushButton#actionButtonValidate:disabled,
+QPushButton#actionButtonReject:disabled {
+    background-color: #f8f8f8;
+    color: #aaaaaa;
+    border-color: #eeeeee;
+}
+/* --- End Action Bar Button Styling --- */
+
+
+/* Filter Tab Buttons */
+QPushButton[objectName^="listFilter"] {
+    background-color: transparent;
+    color: #555555;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0px;
+    padding: 8px 12px;
+    font-size: 10pt;
+    text-align: center;
+    font-weight: normal;
+    min-height: 26px;
+    margin-right: 5px;
+    checkable: true;
+}
+QPushButton[objectName^="listFilter"]:hover {
+    color: #000000;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #d0d0d0;
+}
+QPushButton[objectName^="listFilter"]:pressed {
+    background-color: #e0e0e0;
+}
+QPushButton[objectName^="listFilter"]:checked {
+    /* Style potentially overridden by activeFilter property */
+}
+QPushButton[activeFilter="true"] {
+    color: #0078d4;
+    font-weight: bold;
+    border-bottom: 2px solid #0078d4;
+    background-color: #f0f5fa;
+}
+
+/* Top Menu Button */
+QToolButton#topMenuButton {
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+}
+QToolButton#topMenuButton:hover {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+QToolButton#topMenuButton:pressed, QToolButton#topMenuButton:on {
+    background-color: #d0d0d0;
+    border-radius: 4px;
+}
+
+/* --- List Widget --- */
+QListWidget#offersListWidget {
+    border: 1px solid #dcdcdc;
+    background-color: white;
+    outline: 0;
+}
+QListWidget#offersListWidget::item {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+    color: #333333;
+}
+QListWidget#offersListWidget::item:selected { /* Delegate handles visual selection */ }
+QListWidget#offersListWidget::item:hover { /* Delegate handles visual hover */ }
+
+/* --- Scroll Bars --- */
+QScrollBar:vertical {
+    border: none;
+    background: #f4f7f6;
+    width: 10px;
+    margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {
+    background: #cccccc;
+    min-height: 25px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #bbbbbb;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+    background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
+QScrollBar:horizontal {
+    border: none;
+    background: #f4f7f6;
+    height: 10px;
+    margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:horizontal {
+    background: #cccccc;
+    min-width: 25px;
+    border-radius: 5px;
+}
+QScrollBar::handle:horizontal:hover {
+    background: #bbbbbb;
+}
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+    background: none;
+}
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background: none;
+}
+
+
+/* --- Statistics Cards (MODIFIED for Blue Background) --- */
+QFrame#statsCard1,
+QFrame#statsCard2,
+QFrame#statsCard3,
+QFrame#statsCard4 {
+    background-color: #0078d4; /* Primary blue background */
+    border: 1px solid #005a9e; /* Darker blue border */
+    border-radius: 6px;
+    padding: 10px;
+    /* Shadow effect applied via C++ QGraphicsDropShadowEffect */
+}
+/* Labels inside blue cards need contrasting color */
+/* Target all unique value labels */
+QLabel#statValueLabel1,
+QLabel#statValueLabel2,
+QLabel#statValueLabel3,
+QLabel#statValueLabel4 {
+    font-size: 14pt;
+    font-weight: 600;
+    color: white; /* White text for value */
+    background-color: transparent; /* Ensure transparent background */
+    padding-bottom: 0px;
+    margin-bottom: -2px;
+    qproperty-alignment: 'AlignCenter';
+}
+/* Target all unique title labels */
+QLabel#statTitleLabel1,
+QLabel#statTitleLabel2,
+QLabel#statTitleLabel3,
+QLabel#statTitleLabel4 {
+    font-size: 9pt;
+    color: #e0f0ff; /* Light blue/white text for title */
+    background-color: transparent; /* Ensure transparent background */
+    padding-top: 0px;
+    qproperty-alignment: 'AlignCenter';
+}
+
+/* --- Tooltip --- */
+QToolTip {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-size: 9pt;
+    opacity: 255; /* Opaque */
+}
+
+/* --- Menu (MODIFIED for more 'professional' look) --- */
+QMenu {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #cccccc; /* Slightly lighter border */
+    padding: 6px; /* Slightly more padding around the whole menu */
+    /* Optional: Add a subtle shadow if desired (platform dependent) */
+    /* margin: 2px; */
+}
+QMenu::item {
+    padding: 8px 25px 8px 25px; /* Increased vertical padding */
+    border: 1px solid transparent; /* No border normally */
+    border-radius: 4px; /* Slightly more rounded */
+}
+QMenu::item:selected {
+    background-color: #e5f1fb; /* Keep light blue selection */
+    color: #111111; /* Dark text on selection */
+    /* Optional: Make selected text bold */
+    /* font-weight: bold; */
+}
+QMenu::icon {
+    padding-left: 5px;
+    margin-left: 5px;
+    width: 16px;
+    height: 16px;
+}
+QMenu::separator {
+    height: 1px;
+    background: #e8e8e8; /* Lighter separator */
+    margin: 5px 5px; /* Slightly more margin */
+}
+
+/* --- Frame around the form --- */
+QFrame#formFrame {
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+}
+
+/* --- Specific Labels --- */
+QLabel#screenTitleLabel {
+    font-size: 18pt;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 10px;
+    padding-top: 5px;
+}
+QLabel#formTitleLabel {
+    font-size: 14pt;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+/* --- Dialog Styling --- */
+QDialog {
+    background-color: #f4f7f6;
+    color: #333333;
+    font-family: "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10pt;
+}
+QDialog QLabel {
+    background-color: transparent;
+    color: #333333;
+}
+QDialog QPushButton {
+    background-color: #e1e1e1;
+    color: #111111;
+    border: 1px solid #adadad;
+    border-radius: 4px;
+    padding: 7px 15px;
+    min-height: 24px;
+    min-width: 70px;
+    font-size: 10pt;
+}
+QDialog QPushButton:hover {
+    background-color: #e9e9e9;
+    border-color: #888888;
+}
+QDialog QPushButton:pressed {
+    background-color: #dcdcdc;
+    border-color: #666666;
+}
+QDialog QPushButton:disabled {
+    background-color: #f5f5f5;
+    color: #aaaaaa;
+    border-color: #d1d1d1;
+}
+QDialog QPushButton:default {
+    background-color: #0078d4;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #005a9e;
+}
+QDialog QPushButton:default:hover {
+    background-color: #106ebe;
+    border-color: #005a9e;
+}
+QDialog QPushButton:default:pressed {
+    background-color: #005a9e;
+    border-color: #003b6a;
+}
+QDialog QLineEdit, QDialog QComboBox, QDialog QDateTimeEdit, QDialog QTextEdit, QDialog QPlainTextEdit {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 7px 10px;
+    min-height: 24px;
+    font-size: 10pt;
+    color: #222222;
+}
+QDialog QLineEdit:focus, QDialog QComboBox:focus, QDialog QDateTimeEdit:focus, QDialog QTextEdit:focus, QDialog QPlainTextEdit:focus {
+    border: 1px solid #0078d4;
+}
+QDialog QLineEdit:disabled, QDialog QComboBox:disabled, QDialog QDateTimeEdit:disabled, QDialog QTextEdit:disabled, QDialog QPlainTextEdit:disabled {
+    background-color: #eeeeee;
+    color: #999999;
+    border-color: #dcdcdc;
+}
+
+/* --- CheckBox and RadioButton Styling Inside Dialogs --- */
+QDialog QCheckBox,
+QDialog QRadioButton {
+    color: #333333;
+    background-color: transparent;
+    spacing: 5px;
+    padding: 3px;
+}
+QDialog QCheckBox:disabled,
+QDialog QRadioButton:disabled {
+    color: #aaaaaa;
+}
+QDialog QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #adadad;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+QDialog QCheckBox::indicator:hover {
+    border: 1px solid #888888;
+}
+QDialog QCheckBox::indicator:checked {
+    background-color: #0078d4;
+    border: 1px solid #005a9e;
+    /* image: url(:/icons/checkmark_white.png); */
+}
+QDialog QCheckBox::indicator:checked:hover {
+    background-color: #106ebe;
+    border: 1px solid #005a9e;
+}
+QDialog QCheckBox::indicator:disabled {
+    background-color: #eeeeee;
+    border: 1px solid #d1d1d1;
+    image: none;
+}
+QDialog QCheckBox::indicator:checked:disabled {
+    background-color: #d1d1d1;
+    /* image: url(:/icons/checkmark_grey.png); */
+}
+QDialog QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #adadad;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+QDialog QRadioButton::indicator:hover {
+    border: 1px solid #888888;
+}
+QDialog QRadioButton::indicator:checked {
+    background-color: #ffffff;
+    border: 1px solid #005a9e;
+    padding: 4px;
+    background-clip: content;
+    background-color: #0078d4;
+}
+QDialog QRadioButton::indicator:checked:hover {
+     border: 1px solid #003b6a;
+}
+QDialog QRadioButton::indicator:disabled {
+    background-color: #eeeeee;
+    border: 1px solid #d1d1d1;
+    image: none;
+}
+QDialog QRadioButton::indicator:checked:disabled {
+    background-color: #eeeeee;
+    border: 1px solid #d1d1d1;
+    padding: 4px;
+    background-clip: content;
+    background-color: #aaaaaa;
+}
+
+/* --- Action Bar Controls (Sort Label, Combo Box, Search Edit) --- */
+QLabel#actionBarSortLabel {
+    color: #555555;
+    margin-right: 3px;
+}
+QComboBox#actionBarSortComboBox {
+    min-width: 150px;
+    /* Inherits base QComboBox style */
+}
+QLineEdit#actionBarSearchEdit {
+    padding-left: 30px;
+    background-image: url(:/icons/search.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+/* --- Suggestion Dialog Buttons --- */
+/* Reduce padding specifically for buttons inside SuggestionDialog */
+SuggestionDialog QPushButton {
+    padding-left: 15px;  /* Reduce left padding */
+    padding-right: 15px; /* Reduce right padding */
+    /* Other button properties like color, border, font-size are inherited */
+}
+
+/* === Sidebar Styling === */
+
+/* Background and border for the sidebar container */
+QWidget#sidebarWidget {
+  background-color: #2c3e50; /* Dark blue-grey background */
+  border-right: 1px solid #34495e; /* Slightly lighter border */
+}
+
+/* Base style for ALL buttons inside the sidebar */
+QWidget#sidebarWidget QPushButton {
+  color: #ecf0f1; /* Light grey text color */
+  background-color: transparent;
+  border: none; /* No border */
+  padding: 12px 15px; /* Increased vertical padding */
+  text-align: left;
+  font-size: 10pt;
+  min-height: 35px; /* Slightly taller buttons */
+  border-radius: 5px; /* Slightly more rounded corners */
+  icon-size: 18px 18px;
+  /* Add transition for smoother hover effect (optional) */
+  /* transition: background-color 0.2s ease-in-out; */ /* Note: transition might not work perfectly in all Qt versions/styles */
+}
+
+/* Hover effect for sidebar buttons */
+QWidget#sidebarWidget QPushButton:hover {
+  background-color: #34495e; /* Lighter blue-grey on hover */
+  color: #ffffff; /* White text on hover */
+}
+
+/* Pressed effect for sidebar buttons - CHANGED TO BLUE */
+QWidget#sidebarWidget QPushButton:pressed {
+  background-color: #005a9e; /* Darker Blue press color (like primary button press) */
+  color: #ffffff;
+}
+
+/* Style for the currently selected/checked navigation button - CHANGED TO BLUE */
+QWidget#sidebarWidget QPushButton:checked {
+  background-color: #0078d4; /* Primary Blue background for selected */
+  color: #ffffff; /* White text for selected */
+  font-weight: bold; /* Make text bold */
+  /* Optional: Add a subtle left border to indicate selection */
+  /* border-left: 3px solid #0078d4; */ /* <-- Changed color here too if used */
+  /* Adjust padding if using border-left */
+  /* padding-left: 12px; */
+}
+
+/* Style for non-checkable buttons (like Export, About) when checked (shouldn't happen if checkable=false) */
+/* This prevents them from looking selected if accidentally checked */
+QWidget#sidebarWidget QPushButton[checkable="false"]:checked {
+    background-color: transparent;
+    font-weight: normal;
+    color: #ecf0f1; /* Reset to default text color */
+}
+/* === End Sidebar Styling === */
+
+QToolButton#topMenuButton::menu-indicator {
+    image: none; /* Remove the default image */
+    width: 0px;  /* Ensure it takes no space */
+    /* Optional: Remove any subcontrol origin/position if needed, but image:none is usually enough */
+    /* subcontrol-origin: none; */
+    /* subcontrol-position: none; */
+}
+/* --- Settings Widget Enhancements --- */
+
+/* Style GroupBoxes within SettingsWidget */
+/* You might need to set the objectName "settingsWidget" on the instance */
+/* Or target the specific group box objectNames if known */
+SettingsWidget QGroupBox {
+    font-weight: bold;
+    font-size: 11pt; /* Slightly larger title */
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    margin-top: 10px; /* Space above the group box */
+    background-color: #ffffff; /* White background for the group content area */
+    padding: 5px; /* Padding inside the border but outside the title */
+}
+
+SettingsWidget QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 5px 10px; /* Padding around the title text */
+    margin-left: 10px; /* Indent title slightly */
+    background-color: #e8eef4; /* Light blue background for title */
+    border: 1px solid #cccccc;
+    border-bottom: none; /* Avoid double border */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #333333;
+    font-weight: bold;
+}
+
+/* Adjust spacing within the Form Layouts inside SettingsWidget */
+SettingsWidget QFormLayout {
+    horizontalSpacing: 15px; /* More space between label and field */
+    verticalSpacing: 12px;   /* More space between rows */
+    /* Ensure labels are right-aligned */
+    /* qproperty-labelAlignment: AlignRight; */ /* Set in C++ or UI file if needed */
+}
+
+/* Style the specific Test Database button */
+SettingsWidget QPushButton#m_testDbButton { /* Use object name if set in C++ */
+    /* Inherits base QPushButton style, adjust if needed */
+    font-weight: normal;
+    padding: 6px 12px; /* Slightly smaller padding */
+    background-color: #e1e1e1; /* Standard grey */
+    border-color: #adadad;
+}
+SettingsWidget QPushButton#m_testDbButton:hover {
+    background-color: #e9e9e9;
+    border-color: #888888;
+}
+SettingsWidget QPushButton#m_testDbButton:pressed {
+    background-color: #dcdcdc;
+    border-color: #666666;
+}
+
+/* Style the status labels */
+SettingsWidget QLabel#m_dbStatusLabel { /* Use object name if set in C++ */
+    font-style: italic;
+    padding: 3px 5px; /* Add some padding */
+    border-radius: 3px;
+    min-height: 18px; /* Ensure it doesn't collapse */
+}
+/* Specific styles for success/failure are set in C++ (color, bold), */
+/* but you could add background colors here too */
+/*
+SettingsWidget QLabel#m_dbStatusLabel[status="success"] {
+    background-color: #e6f9e6;
+    border: 1px solid #a3d9a5;
+}
+SettingsWidget QLabel#m_dbStatusLabel[status="failure"] {
+    background-color: #f9e6e6;
+    border: 1px solid #d9a3a3;
+}
+*/
+
+/* Style Checkboxes in the Export Options grid */
+SettingsWidget QGroupBox#m_exportGroup QCheckBox { /* Use object name if set */
+    /* Adjust styling if needed, e.g., spacing */
+    padding: 3px 0px; /* Add vertical padding */
+}

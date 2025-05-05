@@ -1,0 +1,14 @@
+debug/kioskmonitordialog.o
+debug/main.o
+debug/offeritemdelegate.o
+debug/offersflashscreen.o
+debug/settingswidget.o
+debug/statswidget.o
+debug/suggestiondialog.o
+debug/qrc_resources.o
+debug/moc_kioskmonitordialog.o
+debug/moc_offeritemdelegate.o
+debug/moc_offersflashscreen.o
+debug/moc_settingswidget.o
+debug/moc_statswidget.o
+debug/moc_suggestiondialog.o
