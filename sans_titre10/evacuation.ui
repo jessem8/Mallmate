@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Evacuation</class>
+ <widget class="QDialog" name="Evacuation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>550</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>⚠️ Instructions d'Évacuation Personnalisées</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog#Evacuation {
+  background-color: #f8f9fa; /* Fond très léger, proche du blanc */
+  font-family: Segoe UI, Arial, sans-serif; /* Police moderne */
+  color: #333333; /* Couleur de texte par défaut */
+}
+
+QComboBox:focus {
+  border-color: #4A90E2; /* Bleu focus élégant */
+  background-color: #F0F8FF; /* Fond focus doux */
+}
+
+QLabel {
+  background-color: transparent;
+  border: none;
+  padding: 2px;
+  font-size: 13px; /* Taille de base */
+  color: #333333; /* Couleur de texte */
+}
+
+QLabel#titleLabel {
+  font-size: 19pt; /* Texte plus grand pour titre */
+  font-weight: bold;
+  color: #d35400; /* Couleur orange/alerte */
+  padding-bottom: 10px;
+  text-align: center; /* Centrage texte */
+}
+
+QLabel#pathSelectionLabel {
+  font-size: 14px; /* Taille légèrement plus grande */
+  font-weight: bold;
+  color: #555;
+  margin-top: 8px;
+  padding-bottom: 4px;
+}
+
+QLabel.InstructionLabel {
+  font-size: 16pt; /* Texte lisible et large */
+  color: #2c3e50; /* Couleur sérieuse et sombre */
+  padding: 5px; /* Espacement uniforme */
+}
+
+
+
+
+
+
+QPushButton#speakButton {
+  border-radius: 5px; 
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 14px; 
+  min-height: 26px;
+  background-color: #3498db; 
+  color: white;
+  border: none; 
+  margin-top: 20px; 
+}
+
+QPushButton#speakButton:hover {
+  background-color: #2980b9; 
+}
+
+QPushButton#speakButton:pressed {
+  background-color: #1f618d; 
+}
+
+QPushButton#speakButton:disabled {
+  background-color: #aed6f1; 
+  color: #f0f0f0;
+}
+
+QFrame.SeparatorLine {
+  border: none;
+  border-top: 1px solid #dddddd;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+</string>
+  </property>
+  <widget class="QLabel" name="titleLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>410</width>
+     <height>52</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-family: Segoe UI, Arial, sans-serif;
+font-size: 30px; /* Slightly smaller */
+font-weight: bold;
+color: #2c3e50; /* Darker blue/gray */</string>
+   </property>
+   <property name="text">
+    <string>🚨 Instructions d'Évacuation</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pathSelectionLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>116</y>
+     <width>192</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Choisissez votre itinéraire :</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="pathComboBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>281</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Sélectionnez le chemin d'évacuation à suivre</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+    QComboBox {
+        background-color: #f9f9f9;
+        color: #000000; /* Texte noir */
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    QComboBox:hover {
+        border: 2px solid #999999;
+    }
+
+    QComboBox::drop-down {
+        subcontrol-origin: padding;
+        subcontrol-position: top right;
+        width: 25px;
+        border-left: 1px solid #cccccc;
+        background-color: #f0f0f0;
+    }
+
+    QComboBox::down-arrow {
+        image: url(:/images/images/arrow_down.png); /* icône sombre ou remplace si tu veux */
+        width: 12px;
+        height: 12px;
+    }
+
+    QComboBox QAbstractItemView {
+        background-color: white;
+        color: black;
+        selection-background-color: #e0e0e0;
+        selection-color: black;
+        border: 1px solid #cccccc;
+    }</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>-- Choisir un chemin --</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>👉 Avancez tout droit sans vous arrêter.</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>⬅️ Prenez à gauche au prochain couloir.</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>➡️ Allez à droite à l'intersection.</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>⤵️ Tournez à droite après cet escalier.</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>⬇️ Descendez les escaliers avec précaution</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>⬆️ Montez au premier étage, la sortie est là-bas</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>✋ Vous êtes en train de vous tromper ; revenez en arrière.</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>🔄 Faites demi-tour et reprenez par ici.</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>🚪 Voici la sortie, avancez tout droit.</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Other</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string/>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="labelStep3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>489</y>
+     <width>22</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+   <property name="class" stdset="0">
+    <string>InstructionLabel</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="pathFrame">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>521</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::HLine</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Sunken</enum>
+   </property>
+   <property name="class" stdset="0">
+    <string>SeparatorLine</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelStep2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>393</y>
+     <width>22</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+   <property name="class" stdset="0">
+    <string>InstructionLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnvalider">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>600</y>
+     <width>83</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { background-color: #e74c3c; color: white; border: none; } QPushButton:hover { background-color: #c0392b; } QPushButton:pressed { background-color: #a93226; } QPushButton:disabled { background-color: #f5b7b1; }</string>
+   </property>
+   <property name="text">
+    <string>Valider</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addStepButton">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>160</y>
+     <width>83</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { background-color: #e74c3c; color: white; border: none; } QPushButton:hover { background-color: #c0392b; } QPushButton:pressed { background-color: #a93226; } QPushButton:disabled { background-color: #f5b7b1; }</string>
+   </property>
+   <property name="text">
+    <string>ADD</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="undoStepButton">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>160</y>
+     <width>83</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { background-color: #95a5a6; color: white; border: none; } QPushButton:hover { background-color: #7f8c8d; } QPushButton:pressed { background-color: #616A6B; }</string>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

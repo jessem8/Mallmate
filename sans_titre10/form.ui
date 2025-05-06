@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1193</width>
+    <height>888</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label_23">
+   <property name="geometry">
+    <rect>
+     <x>820</x>
+     <y>110</y>
+     <width>171</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/image2.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>170</y>
+     <width>711</width>
+     <height>671</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> background-color: white;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: #333333;
+  border: 2px solid #F5F7FA; /* Bordure avec la couleur demandée */
+</string>
+   </property>
+   <widget class="QLineEdit" name="nomLineEdit_16">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>360</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#QLineEdit{
+    border: 1px solid #D0D0D0; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 6px 10px; /* Space inside the line edit */
+    font-size: 14px; /* Text size */
+    color: #333333; /* Text color */
+    background-color: white; /* Background color */
+}
+
+#QLineEdit:focus {
+    border-color: #4A90E2; /* Blue border for focus state */
+    background-color: #F0F8FF; /* Light blue background */
+    outline: none; /* Remove default outline */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Numero de Téléphone</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_4">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>420</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#QLineEdit{
+    border: 1px solid #D0D0D0; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 6px 10px; /* Space inside the line edit */
+    font-size: 14px; /* Text size */
+    color: #333333; /* Text color */
+    background-color: white; /* Background color */
+}
+
+#QLineEdit:focus {
+    border-color: #4A90E2; /* Blue border for focus state */
+    background-color: #F0F8FF; /* Light blue background */
+    outline: none; /* Remove default outline */
+}</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Tunisien</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>American</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Autre</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLineEdit" name="nomLineEdit_17">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>100</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#QLineEdit{
+    border: 1px solid   black; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 6px 10px; /* Space inside the line edit */
+    font-size: 14px; /* Text size */
+    color: #333333; /* Text color */
+    background-color: white; /* Background color */
+}
+
+#QLineEdit:focus {
+    border-color: #4A90E2; /* Blue border for focus state */
+    background-color: #F0F8FF; /* Light blue background */
+    outline: none; /* Remove default outline */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Nom </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nomLineEdit_18">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>230</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#QLineEdit{
+    border: 1px solid #D0D0D0; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 6px 10px; /* Space inside the line edit */
+    font-size: 14px; /* Text size */
+    color: #333333; /* Text color */
+    background-color: white; /* Background color */
+}
+
+#QLineEdit:focus {
+    border-color: #4A90E2; /* Blue border for focus state */
+    background-color: #F0F8FF; /* Light blue background */
+    outline: none; /* Remove default outline */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Adresse</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nomLineEdit_19">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>300</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#QLineEdit{
+    border: 1px solid #D0D0D0; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 6px 10px; /* Space inside the line edit */
+    font-size: 14px; /* Text size */
+    color: #333333; /* Text color */
+    background-color: white; /* Background color */
+}
+
+#QLineEdit:focus {
+    border-color: #4A90E2; /* Blue border for focus state */
+    background-color: #F0F8FF; /* Light blue background */
+    outline: none; /* Remove default outline */
+}</string>
+    </property>
+    <property name="placeholderText">
+     <string>Email</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>600</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #4A90E2;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    font-weight: bold;
+    min-height: 30px;
+    icon-size: 16px;
+}
+
+QPushButton:hover {
+    background-color: #357ABD;
+}
+
+QPushButton:pressed {
+    background-color: #2A5E8E;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Ajouter</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nomLineEdit_20">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>170</y>
+      <width>221</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#QLineEdit{
+    border: 1px solid #D0D0D0; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 6px 10px; /* Space inside the line edit */
+    font-size: 14px; /* Text size */
+    color: #333333; /* Text color */
+    background-color: white; /* Background color */
+}
+
+#QLineEdit:focus {
+    border-color: #4A90E2; /* Blue border for focus state */
+    background-color: #F0F8FF; /* Light blue background */
+    outline: none; /* Remove default outline */
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Prénom</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>90</y>
+      <width>61</width>
+      <height>67</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel { background-color: transparent;
+ color: #333333;
+ font-family: Segoe UI, Arial, sans-serif;
+font-size:20px;
+padding: 1px;
+border:none}
+</string>
+    </property>
+    <property name="text">
+     <string>Nom</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>170</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel { background-color: transparent;
+ color: #333333;
+ font-family: Segoe UI, Arial, sans-serif;
+font-size:20px;
+padding: 1px;
+border:none;
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>Prenom</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_24">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>230</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel { background-color: transparent;
+ color: #333333;
+ font-family: Segoe UI, Arial, sans-serif;
+font-size:20px;
+padding: 1px;
+border:none;
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>Adresse</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_25">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>360</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel { background-color: transparent;
+ color: #333333;
+ font-family: Segoe UI, Arial, sans-serif;
+font-size:20px;
+padding: 1px;
+border:none; }
+</string>
+    </property>
+    <property name="text">
+     <string>Telephone</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_26">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>420</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel { background-color: transparent;
+ color: #333333;
+ font-family: Segoe UI, Arial, sans-serif;
+font-size:20px;
+padding: 1px;
+border:none;
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>Nationalité</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_27">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>290</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel { background-color: transparent;
+ color: #333333;
+ font-family: Segoe UI, Arial, sans-serif;
+font-size:20px;
+padding: 1px;
+border:none;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Email</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QListWidget" name="sidebarListWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>80</y>
+     <width>221</width>
+     <height>771</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Sidebar Container Styling */
+#sidebarWidget {
+    background-color: #FFFFFF;
+    min-width: 200px;
+    max-width: 250px;
+    border-right: 1px solid #E0E0E0; /* Ligne séparatrice subtile */
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Légère ombre pour un effet 3D */
+}
+
+/* Sidebar List Widget */
+#sidebarListWidget {
+    background-color: #F5F5F5;;
+    border: 2px solid #F5F7FA; /* Bordure avec la couleur demandée */
+    border-radius: 8px; /* Coins arrondis pour une touche élégante */
+    padding: 5px; /* Espacement interne pour les éléments */
+}
+
+/* List Items */
+#sidebarListWidget::item {
+    padding: 12px 20px;
+    color: #555555;
+    min-height: 30px;
+    border-radius: 6px; /* Coins arrondis pour chaque élément */
+    transition: background-color 0.2s ease, padding-left 0.2s ease; /* Animation fluide */
+}
+
+/* Selected Item */
+#sidebarListWidget::item:selected {
+    background-color: #E3F2FD; /* Bleu clair */
+    color: #0D47A1; /* Bleu foncé pour le texte */
+    border-left: 4px solid #0D47A1; /* Bordure accentuée à gauche */
+    font-weight: bold;
+    padding-left: 22px; /* Légère animation pour l'effet de sélection */
+    box-shadow: inset 0 0 5px rgba(13, 71, 161, 0.2); /* Ombre subtile à l'intérieur */
+}
+
+/* Hover (non-sélectionné) */
+#sidebarListWidget::item:hover:!selected {
+    background-color: #F9F9F9; /* Arrière-plan doux */
+    border-left: 3px solid #CCCCCC; /* Accent visuel discret */
+}
+</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>Acceuil</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Statistique</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Liste</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_28">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>120</y>
+     <width>291</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> font-family: Segoe UI, Arial, sans-serif;
+font-size: 30px; font-weight: bold</string>
+   </property>
+   <property name="text">
+    <string>Gestion  de clients</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

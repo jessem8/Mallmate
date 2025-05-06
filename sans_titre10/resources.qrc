@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/image2.jpg</file>
+        <file>images/search.jpg</file>
+        <file>images/arrow_down.png</file>
+        <file>images/map.jpg</file>
+        <file>images/mall.png</file>
+        <file>images/notification_bell.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>images/arrow_down.png</file>
+    </qresource>
+</RCC>

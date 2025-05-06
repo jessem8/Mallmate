@@ -1,0 +1,11 @@
+debug/client.o
+debug/connection.o
+debug/dialog.o
+debug/evacuation.o
+debug/main.o
+debug/risque.o
+debug/widget.o
+debug/qrc_resources.o
+debug/moc_dialog.o
+debug/moc_evacuation.o
+debug/moc_widget.o

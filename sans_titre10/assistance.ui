@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AssistanceDialog</class> <!-- Nom de la classe qui sera générée -->
+ <widget class="QDialog" name="AssistanceDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width> <!-- Largeur ajustée -->
+    <height>380</height> <!-- Hauteur ajustée -->
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Assistance Urgente</string> <!-- Titre de la fenêtre -->
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Styles globaux si nécessaire */</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool> <!-- Rendre la dialogue modale (bloque les autres fenêtres) -->
+  </property>
+
+  <!-- Icône d'alerte (QLabel utilisé comme conteneur d'image) -->
+  <widget class="QLabel" name="iconLabel">
+   <property name="geometry">
+    <rect>
+     <x>195</x> <!-- Centré (450/2 - 60/2) -->
+     <y>20</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/> <!-- Texte vide, on mettra une image/icône -->
+   </property>
+   <property name="pixmap">
+    <!-- Mettez ici le chemin de votre icône via les ressources Qt -->
+    <!-- Exemple : <pixmap>:/icons/alert.png</pixmap> -->
+    <!-- Ou un caractère Unicode si vous n'avez pas d'icône -->
+     <pixmap>../../../../Downloads/alert.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+
+  <!-- Titre Principal -->
+  <widget class="QLabel" name="titleLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>410</width> <!-- Largeur quasi complète -->
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 18pt; font-weight: bold; color: #c0392b; /* Rouge foncé */</string>
+   </property>
+   <property name="text">
+    <string>ASSISTANCE REQUISE ?</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+
+  <!-- Message d'instruction -->
+  <widget class="QLabel" name="messageLabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>130</y>
+     <width>390</width>
+     <height>51</height>
+    </rect>
+   </property>
+    <property name="styleSheet">
+        <string notr="true">font-size: 11pt; </string>
+    </property>
+   <property name="text">
+    <string>Êtes-vous en situation de danger ? Appuyez sur SOS pour une aide immédiate.</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool> <!-- Permet le retour à la ligne -->
+   </property>
+  </widget>
+
+  <!-- Bouton SOS Principal -->
+  <widget class="QPushButton" name="sosButton">
+   <property name="geometry">
+    <rect>
+     <!-- Centré et grand -->
+     <x>125</x> <!-- (450/2 - 200/2) -->
+     <y>190</y>
+     <width>200</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>180</width>
+     <height>60</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+        background-color: #e74c3c; /* Rouge vif */
+        color: white;
+        border: none;
+        border-radius: 40px; /* Pour le rendre très arrondi / ovale */
+        padding: 15px;
+        font-size: 24pt;
+        font-weight: bold;
+    }
+    QPushButton:hover { background-color: #c0392b; } /* Rouge plus foncé au survol */
+    QPushButton:pressed { background-color: #a93226; } /* Encore plus foncé au clic */</string>
+   </property>
+   <property name="text">
+    <string>SOS</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="default">
+    <bool>true</bool> <!-- Peut être activé avec Entrée -->
+   </property>
+   <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape> <!-- Curseur main -->
+    </property>
+  </widget>
+
+  <!-- Bouton Annuler -->
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>165</x> <!-- Centré (450/2 - 120/2) -->
+     <y>300</y>
+     <width>120</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>35</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+        background-color: #95a5a6; /* Gris neutre */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        font-weight: bold;
+    }
+    QPushButton:hover { background-color: #7f8c8d; }
+    QPushButton:pressed { background-color: #616A6B; }</string>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+    <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape> <!-- Curseur main -->
+    </property>
+  </widget>
+
+ </widget>
+ <resources>
+  <!-- Définissez ici vos fichiers de ressources (.qrc) si vous utilisez des icônes -->
+  <qresource prefix="/icons">
+    <file>alert.png</file> <!-- Assurez-vous que ce fichier existe et est listé dans votre .qrc -->
+  </qresource>
+
+ </resources>
+ <connections>
+  <!-- Connecte le clic du bouton Annuler à la fermeture de la dialogue -->
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AssistanceDialog</receiver>
+   <slot>reject()</slot> <!-- reject() est un slot standard de QDialog pour annuler -->
+  </connection>
+  <!-- La connexion pour sosButton se fera dans le code C++ ou Python -->
+ </connections>
+</ui>

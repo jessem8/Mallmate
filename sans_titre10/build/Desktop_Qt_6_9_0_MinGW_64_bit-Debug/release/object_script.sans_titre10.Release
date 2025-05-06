@@ -1,0 +1,11 @@
+release/client.o
+release/connection.o
+release/dialog.o
+release/evacuation.o
+release/main.o
+release/risque.o
+release/widget.o
+release/qrc_resources.o
+release/moc_dialog.o
+release/moc_evacuation.o
+release/moc_widget.o

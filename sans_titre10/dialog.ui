@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>693</width>
+    <height>579</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>70</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CIN :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>212</x>
+     <y>170</y>
+     <width>71</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Prénom :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_25">
+   <property name="geometry">
+    <rect>
+     <x>212</x>
+     <y>320</y>
+     <width>88</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Téléphone :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="telephoneLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>320</y>
+     <width>171</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Numéro de téléphone</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="adresseLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>220</y>
+     <width>171</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Adresse postale</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nomLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>120</y>
+     <width>171</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="placeholderText">
+    <string>Nom de famille</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>212</x>
+     <y>120</y>
+     <width>51</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nom :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="prenomLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>170</y>
+     <width>171</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Prénom</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cinLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>70</y>
+     <width>171</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+   <property name="placeholderText">
+    <string>Numéro CIN</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_27">
+   <property name="geometry">
+    <rect>
+     <x>212</x>
+     <y>270</y>
+     <width>54</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Email :</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_24">
+   <property name="geometry">
+    <rect>
+     <x>212</x>
+     <y>220</y>
+     <width>72</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Adresse :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="emailLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>270</y>
+     <width>171</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>adresse@example.com</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ajouterButton_AddForm">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>460</y>
+     <width>181</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>150</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+                      background-color: #2ecc71; /* Green */
+                      color: white;
+                      border: none; border-radius: 4px; padding: 8px 16px;
+                      font-weight: bold;
+                  }
+                  QPushButton:hover { background-color: #28b463; }
+                  QPushButton:pressed { background-color: #239b56; }</string>
+   </property>
+   <property name="text">
+    <string>✔️ Enregistrer Client</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton_AddForm">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>460</y>
+     <width>120</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>120</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton { background-color: #95a5a6; color: white; border: none; border-radius: 4px; padding: 8px 16px; font-weight: bold; } QPushButton:hover { background-color: #7f8c8d; } QPushButton:pressed { background-color: #616A6B; }</string>
+   </property>
+   <property name="text">
+    <string>Annuler</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_AddClientTitle">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>20</y>
+     <width>550</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 18px; font-weight: bold; color: #3498db; border: none; background: transparent;</string>
+   </property>
+   <property name="text">
+    <string>Modifier un  Client</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="paysComboBox">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>380</y>
+     <width>171</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>36</height>
+    </size>
+   </property>
+   <item>
+    <property name="text">
+     <string>Tunisie</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Palestine</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>France</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>UA</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_26">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>370</y>
+     <width>88</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pays:</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
