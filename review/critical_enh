@@ -1,0 +1,32 @@
+Mallmate review (rating: 4/10)
+
+Findings
+1) Critical: Hardcoded secrets in source (DB creds + API key) risk accidental leak and local compromise; move to env/secure storage and rotate keys.
+   - OffresFlash/offersflashscreen.cpp:511
+   - OffresFlash/offersflashscreen.cpp:513
+   - OffresFlash/offersflashscreen.cpp:2484
+   - FoundItemsAdminWidget/main.cpp:45
+   - FoundItemsAdminWidget/main.cpp:46
+   - sans_titre10/connection.cpp:12
+
+2) High: SQL injection risk from direct string SQL using user input (explicit "WORKAROUND" but still in production). Use prepared statements and bound values throughout.
+   - FoundItemsAdminWidget/founditemsadminwidget.cpp:519
+   - FoundItemsAdminWidget/founditemsadminwidget.cpp:569
+   - FoundItemsAdminWidget/founditemsadminwidget.cpp:691
+   - FoundItemsAdminWidget/founditemsadminwidget.cpp:798
+   - FoundItemsAdminWidget/founditemsadminwidget.cpp:1209
+
+3) High: Dynamic column injection risk in filtering (column name concatenated into SQL); even if UI controls it, guard with a strict whitelist map.
+   - parking/parking.cpp:1662
+   - parking/parking.cpp:1675
+
+4) Medium: DB password stored in QSettings in plaintext; acceptable for local dev but risky for any shared or production use.
+   - OffresFlash/settingswidget.cpp:333
+   - OffresFlash/settingswidget.cpp:377
+
+5) Low: Build artifacts and per-user Qt files committed (noise, merge conflicts, and potential binary drift).
+   - OffresFlash/build/
+   - sans_titre10/build/
+   - sans_titre10/sans_titre10.pro.user
+
+6) Low: No tests found; regressions likely across multiple Qt apps.

@@ -58,6 +58,16 @@
 
 
 const int ACTIONS_COLUMN_INDEX = 5; //  0:PLACEID, 1:NUMERO, 2:STATUT, 3:LOCALISATION, 4:DATE RESERVATION, 5:Actions
+
+// Whitelist of allowed column names for search filter (SQL injection prevention)
+static const QMap<QString, QString> ALLOWED_SEARCH_COLUMNS = {
+    {"all", ""},
+    {"PLACEID", "PLACEID"},
+    {"NUMERO", "NUMERO"},
+    {"STATUT", "STATUT"},
+    {"LOCALISATION", "LOCALISATION"},
+    {"DATE_RESERVATION", "DATE_RESERVATION"}
+};
 void ParkingWindow::goToHomePage() {
     if (stackedWidget) {
         stackedWidget->setCurrentIndex(0);
@@ -1661,6 +1671,13 @@ void ParkingWindow::filterHistory()
     QString searchText = searchLineEdit->text().trimmed();
     QString searchField = searchFieldCombo->currentData().toString();
 
+    // Validate search field against whitelist (SQL injection prevention)
+    if (!ALLOWED_SEARCH_COLUMNS.contains(searchField)) {
+        qWarning() << "Invalid search field rejected:" << searchField;
+        QMessageBox::warning(this, "Erreur", "Champ de recherche invalide.");
+        return;
+    }
+
     // Vider le tableau actuel
     historyTable->setRowCount(0);
 
@@ -1672,7 +1689,8 @@ void ParkingWindow::filterHistory()
         } else if (searchField == "DATE_RESERVATION") {
             queryStr += "WHERE TO_CHAR(DATERESERVATION, 'DD/MM/YYYY HH24:MI') LIKE :search ";
         } else {
-            queryStr += "WHERE " + searchField + " LIKE :search ";
+            // Use validated column name from whitelist
+            queryStr += QString("WHERE %1 LIKE :search ").arg(ALLOWED_SEARCH_COLUMNS.value(searchField));
         }
     }
     queryStr += "ORDER BY PLACEID DESC";

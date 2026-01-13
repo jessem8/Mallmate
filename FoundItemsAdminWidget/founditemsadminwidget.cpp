@@ -54,12 +54,8 @@
 #include <QtCharts/QPieSlice>
 #include <QtCharts/QLegend>
 
-// Helper function to escape single quotes for direct SQL (basic)
-QString escapeSql(const QString& input) {
-    QString output = input;
-    output.replace("'", "''");
-    return output;
-}
+// NOTE: SQL injection prevention now uses prepared statements with bindValue().
+// The previous escapeSql() helper function has been removed as it was insufficient.
 
 
 // Constructor - Initializer list reordered to match header declaration order (fix -Wreorder)
@@ -516,7 +512,6 @@ void FoundItemsAdminWidget::updateStats() {
 // --- Slot Implementations ---
 
 // --- Add Found Item ---
-// <<< WORKAROUND: Using direct SQL execution instead of prepared statements >>>
 void FoundItemsAdminWidget::onAddFoundItemClicked() {
     qDebug() << "Add Found Item Clicked!";
     QSqlDatabase db = QSqlDatabase::database(); // Get default connection
@@ -561,30 +556,26 @@ void FoundItemsAdminWidget::onAddFoundItemClicked() {
         qDebug() << "Database transaction started for INSERT.";
         // --- End Start Transaction ---
 
-        // --- Execute Direct Insert ---
-        // !!! WARNING: This is for DIAGNOSTIC PURPOSES ONLY due to SQL injection risks !!!
-        // It bypasses prepare() and bindValue() to test if the issue lies there.
+        // --- Execute Prepared Statement Insert ---
         QSqlQuery query(db);
-        QString sqlStatement = QString(
-                                   "INSERT INTO FOUND_ITEMS (ITEM_ID, DESCRIPTION, DATE_FOUND, LOCATION_FOUND, STATUS) "
-                                   "VALUES (%1, '%2', TO_DATE('%3', 'YYYY-MM-DD'), '%4', '%5')")
-                                   .arg(newId)
-                                   .arg(escapeSql(description)) // Use helper function for basic escaping
-                                   .arg(date.toString(Qt::ISODate))
-                                   .arg(escapeSql(location))    // Use helper function for basic escaping
-                                   .arg(escapeSql(statusStr));  // Use helper function for basic escaping
+        query.prepare("INSERT INTO FOUND_ITEMS (ITEM_ID, DESCRIPTION, DATE_FOUND, LOCATION_FOUND, STATUS) "
+                      "VALUES (:id, :desc, TO_DATE(:dateFound, 'YYYY-MM-DD'), :loc, :status)");
+        query.bindValue(":id", newId);
+        query.bindValue(":desc", description);
+        query.bindValue(":dateFound", date.toString(Qt::ISODate));
+        query.bindValue(":loc", location);
+        query.bindValue(":status", statusStr);
 
-        qDebug() << "Executing direct SQL (DIAGNOSTIC):" << sqlStatement;
-        bool execOk = query.exec(sqlStatement);
-        // !!! END WARNING !!!
+        qDebug() << "Executing prepared INSERT for found item ID:" << newId;
+        bool execOk = query.exec();
 
         if (!execOk) {
-            qWarning() << "Failed to execute direct insert for found item."; // Modified message
+            qWarning() << "Failed to execute prepared insert for found item.";
             qWarning() << "Qt Error:" << query.lastError().text();
             qWarning() << "DB Error:" << query.lastError().databaseText();
             qWarning() << "Driver Error:" << query.lastError().driverText();
             QString errorToShow = query.lastError().databaseText().isEmpty() ? query.lastError().text() : query.lastError().databaseText();
-            QMessageBox::critical(this, "Database Error", "Failed to add the item to the database (Direct Exec).\n" + errorToShow); // Modified message
+            QMessageBox::critical(this, "Database Error", "Failed to add the item to the database.\n" + errorToShow);
             // --- Rollback Transaction ---
             if (!db.rollback()) {
                 qWarning() << "Failed to rollback transaction after INSERT error:" << db.lastError().text();
@@ -594,7 +585,7 @@ void FoundItemsAdminWidget::onAddFoundItemClicked() {
             // --- End Rollback Transaction ---
             return;
         } else {
-            qDebug() << "Direct INSERT query executed successfully."; // Modified message
+            qDebug() << "Prepared INSERT query executed successfully.";
             // --- Commit Transaction ---
             if (!db.commit()) {
                 qWarning() << "Failed to commit transaction after INSERT:" << db.lastError().text();
@@ -639,7 +630,6 @@ void FoundItemsAdminWidget::onAddFoundItemClicked() {
 
 
 // --- Edit Found Item ---
-// <<< WORKAROUND: Using direct SQL execution instead of prepared statements >>>
 void FoundItemsAdminWidget::onEditItemClicked() {
     qDebug() << "Edit Found Item Clicked!";
     if (!itemsTableView || !itemsTableView->selectionModel() || !proxyModel || !itemModel) { /* Error handling */ return; }
@@ -684,29 +674,26 @@ void FoundItemsAdminWidget::onEditItemClicked() {
         qDebug() << "Database transaction started for UPDATE.";
         // --- End Start Transaction ---
 
-        // --- Execute Direct Update ---
-        // !!! WARNING: This is for DIAGNOSTIC PURPOSES ONLY due to SQL injection risks !!!
+        // --- Execute Prepared Statement Update ---
         QSqlQuery query(db);
-        QString sqlStatement = QString(
-                                   "UPDATE FOUND_ITEMS SET DESCRIPTION = '%1', DATE_FOUND = TO_DATE('%2', 'YYYY-MM-DD'), "
-                                   "LOCATION_FOUND = '%3', STATUS = '%4' WHERE ITEM_ID = %5")
-                                   .arg(escapeSql(newDesc))
-                                   .arg(newDate.toString(Qt::ISODate))
-                                   .arg(escapeSql(newLoc))
-                                   .arg(escapeSql(newStatusStr))
-                                   .arg(currentId);
+        query.prepare("UPDATE FOUND_ITEMS SET DESCRIPTION = :desc, DATE_FOUND = TO_DATE(:dateFound, 'YYYY-MM-DD'), "
+                      "LOCATION_FOUND = :loc, STATUS = :status WHERE ITEM_ID = :id");
+        query.bindValue(":desc", newDesc);
+        query.bindValue(":dateFound", newDate.toString(Qt::ISODate));
+        query.bindValue(":loc", newLoc);
+        query.bindValue(":status", newStatusStr);
+        query.bindValue(":id", currentId);
 
-        qDebug() << "Executing direct SQL (DIAGNOSTIC):" << sqlStatement;
-        bool execOk = query.exec(sqlStatement);
-        // !!! END WARNING !!!
+        qDebug() << "Executing prepared UPDATE for found item ID:" << currentId;
+        bool execOk = query.exec();
 
         if (!execOk) {
-            qWarning() << "Failed to execute direct update for found item (ID: " << currentId << ")"; // Modified message
+            qWarning() << "Failed to execute prepared update for found item (ID:" << currentId << ")";
             qWarning() << "Qt Error:" << query.lastError().text();
             qWarning() << "DB Error:" << query.lastError().databaseText();
             qWarning() << "Driver Error:" << query.lastError().driverText();
             QString errorToShow = query.lastError().databaseText().isEmpty() ? query.lastError().text() : query.lastError().databaseText();
-            QMessageBox::critical(this, "Database Error", "Failed to update the item in the database (Direct Exec).\n" + errorToShow); // Modified message
+            QMessageBox::critical(this, "Database Error", "Failed to update the item in the database.\n" + errorToShow);
             // --- Rollback Transaction ---
             if (!db.rollback()) {
                 qWarning() << "Failed to rollback transaction after UPDATE error:" << db.lastError().text();
@@ -716,7 +703,7 @@ void FoundItemsAdminWidget::onEditItemClicked() {
             // --- End Rollback Transaction ---
             return;
         } else {
-            qDebug() << "Direct UPDATE query executed successfully. Rows affected:" << query.numRowsAffected(); // Modified message
+            qDebug() << "Prepared UPDATE query executed successfully. Rows affected:" << query.numRowsAffected();
             // --- Commit Transaction ---
             if (!db.commit()) {
                 qWarning() << "Failed to commit transaction after UPDATE:" << db.lastError().text();
@@ -756,7 +743,6 @@ void FoundItemsAdminWidget::onEditItemClicked() {
 
 
 // --- Delete Found Item ---
-// <<< WORKAROUND: Using direct SQL execution instead of prepared statements >>>
 void FoundItemsAdminWidget::onDeleteItemClicked() {
     qDebug() << "Delete Found Item Clicked!";
     if (!itemsTableView || !itemsTableView->selectionModel() || !proxyModel || !itemModel) { /* Error handling */ return; }
@@ -792,22 +778,21 @@ void FoundItemsAdminWidget::onDeleteItemClicked() {
         qDebug() << "Database transaction started for DELETE.";
         // --- End Start Transaction ---
 
-        // --- Execute Direct Delete ---
-        // !!! WARNING: This is for DIAGNOSTIC PURPOSES ONLY !!!
+        // --- Execute Prepared Statement Delete ---
         QSqlQuery query(db);
-        QString sqlStatement = QString("DELETE FROM FOUND_ITEMS WHERE ITEM_ID = %1").arg(currentId);
+        query.prepare("DELETE FROM FOUND_ITEMS WHERE ITEM_ID = :id");
+        query.bindValue(":id", currentId);
 
-        qDebug() << "Executing direct SQL (DIAGNOSTIC):" << sqlStatement;
-        bool execOk = query.exec(sqlStatement);
-        // !!! END WARNING !!!
+        qDebug() << "Executing prepared DELETE for found item ID:" << currentId;
+        bool execOk = query.exec();
 
         if (!execOk) {
-            qWarning() << "Failed to execute direct delete for found item (ID: " << currentId << ")"; // Modified message
+            qWarning() << "Failed to execute prepared delete for found item (ID:" << currentId << ")";
             qWarning() << "Qt Error:" << query.lastError().text();
             qWarning() << "DB Error:" << query.lastError().databaseText();
             qWarning() << "Driver Error:" << query.lastError().driverText();
             QString errorToShow = query.lastError().databaseText().isEmpty() ? query.lastError().text() : query.lastError().databaseText();
-            QMessageBox::critical(this, "Database Error", "Failed to delete the item from the database (Direct Exec).\n" + errorToShow); // Modified message
+            QMessageBox::critical(this, "Database Error", "Failed to delete the item from the database.\n" + errorToShow);
             // --- Rollback Transaction ---
             if (!db.rollback()) {
                 qWarning() << "Failed to rollback transaction after DELETE error:" << db.lastError().text();
@@ -817,7 +802,7 @@ void FoundItemsAdminWidget::onDeleteItemClicked() {
             // --- End Rollback Transaction ---
             return;
         } else {
-            qDebug() << "Direct DELETE query executed successfully. Rows affected:" << query.numRowsAffected(); // Modified message
+            qDebug() << "Prepared DELETE query executed successfully. Rows affected:" << query.numRowsAffected();
             // --- Commit Transaction ---
             if (!db.commit()) {
                 qWarning() << "Failed to commit transaction after DELETE:" << db.lastError().text();
@@ -1145,7 +1130,6 @@ void FoundItemsAdminWidget::onAddButtonReleased() {
 
 
 // --- Add Lost Item Report ---
-// <<< WORKAROUND: Using direct SQL execution instead of prepared statements >>>
 void FoundItemsAdminWidget::onAddLostItemReportClicked() {
     qDebug() << "Add Lost Item Report Clicked!";
     QSqlDatabase db = QSqlDatabase::database();
@@ -1192,37 +1176,33 @@ void FoundItemsAdminWidget::onAddLostItemReportClicked() {
         qDebug() << "Database transaction started for Lost Item INSERT.";
         // --- End Start Transaction ---
 
-        // --- Execute Direct Insert ---
-        // !!! WARNING: This is for DIAGNOSTIC PURPOSES ONLY due to SQL injection risks !!!
+        // --- Execute Prepared Statement Insert ---
         QSqlQuery query(db);
-        QString dateLostSql;
+        // Use prepared statement with different SQL depending on whether date is valid
         if (dateLost.isValid()) {
-            dateLostSql = QString("TO_DATE('%1', 'YYYY-MM-DD')").arg(dateLost.toString(Qt::ISODate));
+            query.prepare("INSERT INTO LOST_ITEMS (REPORT_ID, DESCRIPTION, DATE_LOST, LOCATION_LOST, CONTACT_INFO, STATUS) "
+                          "VALUES (:id, :desc, TO_DATE(:dateLost, 'YYYY-MM-DD'), :loc, :contact, :status)");
+            query.bindValue(":dateLost", dateLost.toString(Qt::ISODate));
         } else {
-            dateLostSql = "NULL"; // Use NULL keyword if date is invalid
+            query.prepare("INSERT INTO LOST_ITEMS (REPORT_ID, DESCRIPTION, DATE_LOST, LOCATION_LOST, CONTACT_INFO, STATUS) "
+                          "VALUES (:id, :desc, NULL, :loc, :contact, :status)");
         }
+        query.bindValue(":id", newId);
+        query.bindValue(":desc", description);
+        query.bindValue(":loc", location);
+        query.bindValue(":contact", contact);
+        query.bindValue(":status", statusStr);
 
-        QString sqlStatement = QString(
-                                   "INSERT INTO LOST_ITEMS (REPORT_ID, DESCRIPTION, DATE_LOST, LOCATION_LOST, CONTACT_INFO, STATUS) "
-                                   "VALUES (%1, '%2', %3, '%4', '%5', '%6')")
-                                   .arg(newId)
-                                   .arg(escapeSql(description))
-                                   .arg(dateLostSql) // Use NULL or TO_DATE(...)
-                                   .arg(escapeSql(location))
-                                   .arg(escapeSql(contact))
-                                   .arg(escapeSql(statusStr));
-
-        qDebug() << "Executing direct SQL (DIAGNOSTIC):" << sqlStatement;
-        bool execOk = query.exec(sqlStatement);
-        // !!! END WARNING !!!
+        qDebug() << "Executing prepared INSERT for lost item report ID:" << newId;
+        bool execOk = query.exec();
 
         if (!execOk) {
-            qWarning() << "Failed to execute direct insert for lost item report."; // Modified message
+            qWarning() << "Failed to execute prepared insert for lost item report.";
             qWarning() << "Qt Error:" << query.lastError().text();
             qWarning() << "DB Error:" << query.lastError().databaseText();
             qWarning() << "Driver Error:" << query.lastError().driverText();
             QString errorToShow = query.lastError().databaseText().isEmpty() ? query.lastError().text() : query.lastError().databaseText();
-            QMessageBox::critical(this, "Database Error", "Failed to add the lost item report to the database (Direct Exec).\n" + errorToShow); // Modified message
+            QMessageBox::critical(this, "Database Error", "Failed to add the lost item report to the database.\n" + errorToShow);
             // --- Rollback Transaction ---
             if (!db.rollback()) {
                 qWarning() << "Failed to rollback transaction after Lost Item INSERT error:" << db.lastError().text();
@@ -1232,7 +1212,7 @@ void FoundItemsAdminWidget::onAddLostItemReportClicked() {
             // --- End Rollback Transaction ---
             return;
         } else {
-            qDebug() << "Direct INSERT Lost Item query executed successfully."; // Modified message
+            qDebug() << "Prepared INSERT Lost Item query executed successfully.";
             // --- Commit Transaction ---
             if (!db.commit()) {
                 qWarning() << "Failed to commit transaction after Lost Item INSERT:" << db.lastError().text();
@@ -1275,7 +1255,6 @@ void FoundItemsAdminWidget::onAddLostItemReportClicked() {
 
 
 // --- Delete Lost Item Report ---
-// <<< WORKAROUND: Using direct SQL execution instead of prepared statements >>>
 void FoundItemsAdminWidget::onDeleteLostItemClicked() {
     qDebug() << "Delete Lost Item Report Clicked!";
     if (!lostItemsTableView || !lostItemsTableView->selectionModel() || !lostItemModel) { /* Error handling */ return; }
@@ -1308,22 +1287,21 @@ void FoundItemsAdminWidget::onDeleteLostItemClicked() {
         qDebug() << "Database transaction started for Lost Item DELETE.";
         // --- End Start Transaction ---
 
-        // --- Execute Direct Delete ---
-        // !!! WARNING: This is for DIAGNOSTIC PURPOSES ONLY !!!
+        // --- Execute Prepared Statement Delete ---
         QSqlQuery query(db);
-        QString sqlStatement = QString("DELETE FROM LOST_ITEMS WHERE REPORT_ID = %1").arg(currentId);
+        query.prepare("DELETE FROM LOST_ITEMS WHERE REPORT_ID = :id");
+        query.bindValue(":id", currentId);
 
-        qDebug() << "Executing direct SQL (DIAGNOSTIC):" << sqlStatement;
-        bool execOk = query.exec(sqlStatement);
-        // !!! END WARNING !!!
+        qDebug() << "Executing prepared DELETE for lost item report ID:" << currentId;
+        bool execOk = query.exec();
 
         if (!execOk) {
-            qWarning() << "Failed to execute direct delete for lost item report (ID: " << currentId << ")"; // Modified message
+            qWarning() << "Failed to execute prepared delete for lost item report (ID:" << currentId << ")";
             qWarning() << "Qt Error:" << query.lastError().text();
             qWarning() << "DB Error:" << query.lastError().databaseText();
             qWarning() << "Driver Error:" << query.lastError().driverText();
             QString errorToShow = query.lastError().databaseText().isEmpty() ? query.lastError().text() : query.lastError().databaseText();
-            QMessageBox::critical(this, "Database Error", "Failed to delete the lost item report from the database (Direct Exec).\n" + errorToShow); // Modified message
+            QMessageBox::critical(this, "Database Error", "Failed to delete the lost item report from the database.\n" + errorToShow);
             // --- Rollback Transaction ---
             if (!db.rollback()) {
                 qWarning() << "Failed to rollback transaction after Lost Item DELETE error:" << db.lastError().text();
@@ -1333,7 +1311,7 @@ void FoundItemsAdminWidget::onDeleteLostItemClicked() {
             // --- End Rollback Transaction ---
             return;
         } else {
-            qDebug() << "Direct DELETE Lost Item Report query executed successfully. Rows affected:" << query.numRowsAffected(); // Modified message
+            qDebug() << "Prepared DELETE Lost Item Report query executed successfully. Rows affected:" << query.numRowsAffected();
             // --- Commit Transaction ---
             if (!db.commit()) {
                 qWarning() << "Failed to commit transaction after Lost Item DELETE:" << db.lastError().text();

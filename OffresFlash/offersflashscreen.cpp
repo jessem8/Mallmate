@@ -70,6 +70,7 @@
 #include <algorithm>
 #include "kioskmonitordialog.h"
 #include <QRandomGenerator>
+#include "../common/configmanager.h"
 // Added for potential query parameters
 // Define a connection name
 const QString OFFERS_DB_CONNECTION_NAME = "oracle_mallmate_connection";
@@ -507,10 +508,15 @@ bool OffresFlashScreen::initializeDatabaseConnection() {
         QMessageBox::critical(this, "Driver Error", "Failed to load the QODBC driver.");
         return false;
     }
-    // --- IMPORTANT: Use correct DSN, User, Password ---
-    QString dsnName = "Mallmate_DBN"; // Your ODBC Data Source Name
-    QString oracleUser = "mallmate_user"; // Your Oracle Username
-    QString oraclePassword = "mallmate_password"; // Your Oracle Password
+    // --- Load credentials from ConfigManager (env vars / QSettings) ---
+    if (!ConfigManager::isDatabaseConfigured()) {
+        qWarning() << "Database configuration is missing!";
+        QMessageBox::critical(this, "Configuration Error", ConfigManager::getMissingConfigMessage());
+        return false;
+    }
+    QString dsnName = ConfigManager::getDatabaseDsn();
+    QString oracleUser = ConfigManager::getDatabaseUser();
+    QString oraclePassword = ConfigManager::getDatabasePassword();
     // --------------------------------------------------
     m_database.setDatabaseName(dsnName);
     m_database.setUserName(oracleUser);
@@ -522,7 +528,8 @@ bool OffresFlashScreen::initializeDatabaseConnection() {
                               QString("Could not open Oracle database via ODBC DSN '%1'.\n\n"
                                       "Driver: %2\n"
                                       "Error: %3\n\n"
-                                      "Please check ODBC configuration and credentials.")
+                                      "Please check ODBC configuration and credentials.\n"
+                                      "See CONFIG.md for setup instructions.")
                                   .arg(dsnName)
                                   .arg(m_database.driverName())
                                   .arg(m_database.lastError().text()) );

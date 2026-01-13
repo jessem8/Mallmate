@@ -10,20 +10,20 @@
 #include <QVariant> // Might be needed indirectly by QSql
 
 #include "founditemsadminwidget.h"
-// #include "databaseconnection.h" // <<< REMOVED: No longer using the separate class
+#include "../common/configmanager.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     a.setApplicationName("Mallmate");
-    a.setOrganizationName("YourOrganization"); // Keep or change as needed
+    a.setOrganizationName("Mallmate");
     a.setApplicationVersion("1.0.0");
 
     // --- Establish Database Connection (ODBC Connection String Method) ---
     qDebug() << "[main] Attempting database connection via ODBC Connection String...";
 
-    QString connectionName = QSqlDatabase::defaultConnection; // Use the default connection name
+    QString connectionName = QSqlDatabase::defaultConnection;
 
-    // Check if a connection with this name already exists (e.g., from a previous run if not cleaned up)
+    // Check if a connection with this name already exists
     if (QSqlDatabase::contains(connectionName)) {
         QSqlDatabase existingDb = QSqlDatabase::database(connectionName);
         if (existingDb.isOpen()) {
@@ -35,60 +35,67 @@ int main(int argc, char *argv[]) {
     }
 
     // Add the database driver
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC", connectionName); // Specify the connection name
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC", connectionName);
     qDebug() << "[main] Added QODBC driver for connection '" << connectionName << "'.";
 
-    // --- Define Connection String Parameters ---
-    // IMPORTANT: Use the correct values for YOUR Oracle XE setup
-    QString driverName = "{Oracle in XE}"; // Driver name as identified in ODBC Data Sources (x64)
-    QString tnsServiceName = "XE";          // Your TNS Service Name or SID for Oracle XE
-    QString user = "Mallmate";             // Your Oracle Database Username
-    QString pass = "Mallmate";             // Your Oracle Database Password (use the correct one)
-    // Note: The user/pass "Mallmate" from the original main.cpp seems different from MainWindow.cpp's "DRIBBTECH".
-    // I've used "DRIBBTECH" here based on the MainWindow code you provided. Adjust if needed.
+    // --- Load credentials from ConfigManager (env vars / QSettings) ---
+    if (!ConfigManager::isDatabaseConfigured()) {
+        qCritical() << "[main] FATAL: Database configuration is missing!";
+        QMessageBox::critical(nullptr, "Configuration Error", ConfigManager::getMissingConfigMessage());
+        return 1;
+    }
 
-    // Construct the connection string
-    QString connectionString = QString("DRIVER=%1;DBQ=%2;UID=%3;PWD=%4;")
-                                   .arg(driverName)
-                                   .arg(tnsServiceName)
-                                   .arg(user)
-                                   .arg(pass);
+    QString dsn = ConfigManager::getDatabaseDsn();
+    QString user = ConfigManager::getDatabaseUser();
+    QString pass = ConfigManager::getDatabasePassword();
 
-    qDebug() << "[main]  Conn Str (PWD omitted):" << QString("DRIVER=%1;DBQ=%2;UID=%3;PWD=*****;").arg(driverName).arg(tnsServiceName).arg(user);
+    // Build connection string (supports both DSN name and full connection string)
+    QString connectionString;
+    if (dsn.startsWith("Driver=", Qt::CaseInsensitive) || dsn.contains(";")) {
+        // DSN is already a full connection string, append credentials if not included
+        connectionString = dsn;
+        if (!connectionString.contains("UID=", Qt::CaseInsensitive)) {
+            connectionString += QString(";UID=%1").arg(user);
+        }
+        if (!connectionString.contains("PWD=", Qt::CaseInsensitive)) {
+            connectionString += QString(";PWD=%1").arg(pass);
+        }
+    } else {
+        // DSN is a simple name, build Oracle connection string
+        connectionString = QString("Driver={Oracle in XE};DBQ=%1;UID=%2;PWD=%3;")
+                               .arg(dsn).arg(user).arg(pass);
+    }
 
-    // Set the connection string as the "database name" for the QODBC driver
+    qDebug() << "[main] Conn Str (PWD omitted):" << connectionString.left(connectionString.indexOf("PWD=")) + "PWD=*****;";
+
     db.setDatabaseName(connectionString);
 
     qDebug() << "[main] Attempting db.open() using Connection String...";
-    bool ok = db.open(); // Try to open the connection
+    bool ok = db.open();
 
-    // Check if the connection was successful
     if (!ok) {
-        qCritical() << "[main] FATAL: Database connection failed using Connection String.";
-        qCritical() << "[main]  QSqlError:" << db.lastError().text();
-        qCritical() << "[main]  ODBC Driver Error:" << db.lastError().driverText();
-        qCritical() << "[main]  Oracle Database Error:" << db.lastError().databaseText();
+        qCritical() << "[main] FATAL: Database connection failed.";
+        qCritical() << "[main] QSqlError:" << db.lastError().text();
+        qCritical() << "[main] ODBC Driver Error:" << db.lastError().driverText();
+        qCritical() << "[main] Oracle Database Error:" << db.lastError().databaseText();
 
-        // Show a detailed error message to the user
         QMessageBox::critical(nullptr, "Fatal Database Error",
                               QString("Could not connect to the database using ODBC.\n\n"
-                                      "Driver: %1\n"
-                                      "Service/DBQ: %2\n"
-                                      "User: %3\n\n"
-                                      "Error: %4\n\n"
+                                      "DSN: %1\n"
+                                      "User: %2\n\n"
+                                      "Error: %3\n\n"
                                       "Please check:\n"
                                       "1. Oracle ODBC driver (64-bit if app is 64-bit) is installed.\n"
-                                      "2. Connection details (Driver, DBQ, UID, PWD) are correct in main.cpp.\n"
+                                      "2. Environment variables are set correctly (see CONFIG.md).\n"
                                       "3. Oracle Listener service is running and database is accessible.\n\n"
                                       "Application will exit.")
-                                  .arg(driverName)
-                                  .arg(tnsServiceName)
+                                  .arg(dsn)
                                   .arg(user)
                                   .arg(db.lastError().text()));
-        return 1; // Exit application if connection fails
+        return 1;
     }
 
-    qDebug() << "[main] Database connection successful using Connection String.";
+    qDebug() << "[main] Database connection successful.";
     // --- End Database Connection ---
 
 
