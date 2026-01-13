@@ -1,0 +1,121 @@
+# ==============================================================================
+# Qt/C++ Build Artifacts - Root .gitignore for Mallmate
+# ==============================================================================
+
+# Build directories (all projects)
+**/build/
+build/
+
+# Qt Creator user files
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+
+# Compiled Object files
+*.o
+*.obj
+*.moc
+
+# Precompiled Headers
+*.gch
+*.pch
+*_pch.h.cpp
+
+# Compiled Dynamic libraries
+*.so
+*.so.*
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.la
+*.lai
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Qt generated
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qm
+*_resource.rc
+
+# qmake generated
+.qmake.cache
+.qmake.stash
+Makefile
+Makefile.*
+*.prl
+
+# Qt Creator clangd cache
+.qtc_clangd/
+
+# Compiler listing
+*.gcno
+*.gcda
+*.gcov
+
+# MinGW generated
+*.Debug
+*.Release
+
+# IDE directories
+.idea/
+.vscode/
+*.user
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*~
+*.autosave
+*.orig
+*.rej
+*.bak
+*.tmp
+*.swp
+.#*
+*.*#
+
+# Debug files
+*.debug
+*.ib_pdb_index
+*.idb
+*.ilk
+*.pdb
+
+# Visual Studio
+*.sln
+*.suo
+*.vcproj
+*vcproj.*.*.user
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj
+*vcxproj.*
+
+# Python (if any)
+*.pyc
+__pycache__/
+
+# Local generated temp files
+tracked_files.txt
+tracked_files_utf8.txt
