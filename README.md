@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/mallmate_logo.png" alt="Mallmate Logo" width="300"/>
+  <img src="docs/mallmate_logo.jpg" alt="Mallmate Logo" width="300"/>
 </p>
 
 <h1 align="center">🛒 Mallmate</h1>
@@ -221,7 +221,7 @@ Developed with ❤️ by the Mallmate Team
 ---
 
 <p align="center">
-  <img src="docs/mallmate_logo.png" alt="Mallmate" width="100"/>
+  <img src="docs/mallmate_logo.jpg" alt="Mallmate" width="100"/>
   <br/>
   <em>Making mall management simple and efficient</em>
 </p>
